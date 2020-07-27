@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class User
+class User # can place this definition on app/models as well.
   include Tiny::Redis
   attr_accessor :email
 
