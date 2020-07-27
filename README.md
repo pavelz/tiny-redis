@@ -19,7 +19,7 @@ Steps to use:
 
 ```
    class User
-   include TinyRedis
+   include Tiny::Redis
 
    attr_accessor :email
    alias_method :index, :email # this will tie your records method to indexing parameter

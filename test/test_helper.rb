@@ -10,3 +10,4 @@ Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 require "rails/test_unit/reporter"
 Rails::TestUnitReporter.executable = 'bin/test'
 
+require 'minitest/pride'
