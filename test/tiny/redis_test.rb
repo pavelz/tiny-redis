@@ -8,13 +8,12 @@ class User
 end
 
 class Tiny::Redis::Test < ActiveSupport::TestCase
-  test "truth" do
-    assert_kind_of Module, Tiny::Redis
-  end
-
-  test "connect" do
+  test "connect to database and save an object. then load it." do
     u = User.new
     u.email = "email@email.com"
-    u.save(nil)
+    assert(u.save(nil) != false)
+    
+    user = User.load("email@email.com")
+    assert(user.email == "email@email.com")
   end
 end
