@@ -33,6 +33,12 @@ Set up credentials:
    user:
      encryptkey: abcdabcdabcdadbvabcdabcdabcdadbv
 ```
+##Env Vars
+```
+   RAILS_MAX_CONCURRENCY - how many connections will be created to redis server
+   REDIS_TIMEOUT - timeout for operations
+   REDIS_URL - url for redis server.
+```
 
 Now your records in redis are encrypted. If you wish for more security you can remove config/master.key after server starts. And investigate SE Linux address space protection so hacker can't pry encryption key from the app so easily.
 
