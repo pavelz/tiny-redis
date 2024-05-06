@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:pavelz/minitest.git
+  revision: 56283844271b712f34fa4ecc05395238ca6aacde
+  specs:
+    minitest (5.22.3)
+
 PATH
   remote: .
   specs:
@@ -87,7 +93,6 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
-    minitest (5.22.3)
     net-imap (0.4.10)
       date
       net-protocol
@@ -161,6 +166,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  minitest (= 5.22.3)!
   pry-rails
   tiny-redis!
 

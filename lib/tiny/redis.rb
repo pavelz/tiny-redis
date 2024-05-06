@@ -1,10 +1,10 @@
-require "tiny/redis/railtie"
+require 'tiny/redis/railtie'
 require 'redis'
 require 'connection_pool'
 
 module Tiny
+  # Tiny::Redis - is primo redis access libary with encrypted password storage
   module Redis
-
     def self.included(klass)
       klass.extend(ClassMethods)
     end
@@ -13,10 +13,11 @@ module Tiny
       key, crypt = self.class.setup(index)
 
       $redis.with do |r|
-        r.set(key, crypt.encrypt_and_sign(self.to_json(except: filter)))
+        r.set(key, crypt.encrypt_and_sign(to_json(except: filter)))
       end
     end
 
+    # accessor methods to redis resource with encryption bake in
     module ClassMethods
       def load(index)
         key, crypt = setup(index)
@@ -24,6 +25,7 @@ module Tiny
         $redis.with do |r|
           encrypted = r.get(key)
           return nil if encrypted.nil?
+
           JSON.parse(crypt.decrypt_and_verify(encrypted), object_class: self)
         end
       end
@@ -36,17 +38,19 @@ module Tiny
       end
     end
 
-    attr_accessor   :errors
+    attr_accessor :errors
+
     def initialize(params = {})
       @errors = ActiveModel::Errors.new(self)
 
-      params.present? && params.each do |k,v|
+      params.present? && params.each do |k, v|
         self[k] = v
       end
     end
 
     def []=(key, value)
       return if key == 'errors' # PATCH if error sneaks in, ruins whole validation process
+
       send("#{key}=", value)
     end
   end
