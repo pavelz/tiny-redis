@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tiny/redis/railtie'
 require 'redis'
 require 'connection_pool'
