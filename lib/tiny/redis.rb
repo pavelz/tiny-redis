@@ -33,7 +33,8 @@ module Tiny
       end
 
       def setup(index)
-        key = Digest::SHA1.hexdigest(index)
+        digest = Rails.application.config.redishash
+        key = digest.hexdigest(index)
         encrypt_key = Rails.application.credentials.user[:encryptkey]
         crypt = ActiveSupport::MessageEncryptor.new(encrypt_key)
         return [key, crypt]
